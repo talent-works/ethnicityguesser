@@ -8,17 +8,13 @@ def unpickle(string):
 	pickle_file = open(string, 'rb')
 	to_ret = pickle.load(pickle_file)
 	return to_ret
-	
+
 def make_classifier():
-	all_toks = []
-	for pickle_file in os.listdir("pickled_names"):
-		all_toks.append(unpickle('pickled_names/' + pickle_file))
-	classifier = mxec(all_toks)
-	return classifier
+	return unpickle('src/ethnicity/pickled_classifiers/danish_irish_chinese_czech_japanese_french_jewish_indian_spanish_italian_.pkl')
 
 def main():
 	classifier = make_classifier()
-	# classifier = unpickle('../ethnicityguesser/pickled_classifiers/danish_irish_chinese_czech_japanese_french_jewish_indian_spanish_italian_.pkl')
+	# classifier = unpickle('src/ethnicity/pickled_classifiers/danish_irish_chinese_czech_japanese_french_jewish_indian_spanish_italian_.pkl')
 	print classifier
 	while(True):
 		name = raw_input("Enter a name (enter to quit) -->: ")

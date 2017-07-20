@@ -96,3 +96,6 @@ Pickling:
 pickled_names directory is full of pickled ([list of names], 'ethnicity') pairs
 
 pickled_classifiers is full of pickled trained classifiers
+
+POSSIBLE FUTURE WORK
+Move data files over to talentworks-data repository, create a new classifier written using our `BaseClassifier` but with the features identified by `ethnicityguesser`, and confirm that the P/R stats do not regress.

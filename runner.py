@@ -13,7 +13,7 @@ def unpickle(string):
 ETHNICITY_PKL = "pickled_classifiers/danish_irish_chinese_czech_japanese_french_jewish_indian_spanish_italian_.pkl"
 def make_classifier():
 	# Can't use pkg_resources because the pickled files don't get installed for some reason. -e?
-	path = os.path.join(os.environ["APP_ROOT"], "src", PACKAGE_NAME, ETHNICITY_PKL)
+	path = os.path.join(os.environ["APP_ROOT"], "src", PACKAGE_NAME.replace("_", "-"), ETHNICITY_PKL)
 	clf = unpickle(path)
 	return clf
 

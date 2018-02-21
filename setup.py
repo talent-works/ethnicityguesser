@@ -2,12 +2,12 @@ from setuptools import find_packages, setup
 
 setup(
     name         = 'ethnicity-guesser',
-    version      = '1.0',
-    packages     = ['guesser'],
+    version      = '0.1',
+    packages     = ['ethnicity_guesser'],
     package_dir  = {
-        'guesser': '.',
+        'ethnicity_guesser': '.',
     },
     package_data = {
-        'guesser':   ['./*'],
+        'ethnicity_guesser':   ['./*'],
     },
 )

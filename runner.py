@@ -2,31 +2,32 @@
 
 import sys, io, os
 import pkg_resources
-import cloudpickle
+import dill
 
-from NLTKMaxentEthnicityClassifier import NLTKMaxentEthnicityClassifier as mxec
+import NLTKMaxentEthnicityClassifier as mec
 from setup import PACKAGE_NAME
 
 def unpickle(string):
 	pickle_file = open(string, 'rb')
-	to_ret = cloudpickle.load(pickle_file)
+	to_ret = dill.load(pickle_file)
 	return to_ret
 
-ETHNICITY_PKL = "pickled_classifiers/combined.cloudpickle"
+ETHNICITY_PKL = "pickled_classifiers/combined.dill"
 def make_classifier():
-	path = pkg_resources.resource_filename(PACKAGE_NAME, ETHNICITY_PKL)
-	if not os.path.exists(path):
-		all_toks = []
-		for pickle_file in os.listdir("pickled_names"):
-			all_toks.append(unpickle('pickled_names/' + pickle_file))
+	# path = pkg_resources.resource_filename(PACKAGE_NAME, ETHNICITY_PKL)
+	# if not os.path.exists(path):
+	all_toks = []
+	basedir = pkg_resources.resource_filename(PACKAGE_NAME, "pickled_names")
+	for pickle_file in os.listdir(basedir):
+		all_toks.append(unpickle(os.path.join(basedir, pickle_file)))
 
-		clf = mxec(all_toks)
-		clf.train()
+	clf = mec.NLTKMaxentEthnicityClassifier(all_toks)
+	clf.train(min_lldelta=0.500)
 
-		cloudpickle.dump(clf, open(path, "wb"))
+	# dill.dump(clf, open(path, "wb"))
 
-	else:
-		clf = unpickle(path)
+	# else:
+	# 	clf = unpickle(path)
 
 	return clf
 

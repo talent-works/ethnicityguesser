@@ -73,9 +73,9 @@ class NLTKMaxentEthnicityClassifier(object):
 	def weights(self):
 		return self.classifier.weights()
 
-	def train(self):
+	def train(self, **constraints):
 		tokens = self.make_train_toks(self.training_lists)
-		self.classifier = mxc.train(tokens, algorithm="iis", min_lldelta=0.025)
+		self.classifier = mxc.train(tokens, algorithm="iis", **constraints)
 
 
 	def explain(self, name, columns=4):

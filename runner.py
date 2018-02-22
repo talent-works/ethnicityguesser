@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import sys, io, os
+import pkg_resources
 import cPickle as pickle
 
 from NLTKMaxentEthnicityClassifier import NLTKMaxentEthnicityClassifier as mxec
@@ -13,8 +14,7 @@ def unpickle(string):
 
 ETHNICITY_PKL = "pickled_classifiers/combined.pkl"
 def make_classifier():
-	# Can't use pkg_resources because the pickled files don't get installed for some reason. -e?
-	path = os.path.join(os.environ["APP_ROOT"], "src", PACKAGE_NAME.replace("_", "-"), ETHNICITY_PKL)
+	path = pkg_resources.resource_filename(PACKAGE_NAME, ETHNICITY_PKL)
 	if not os.path.exists(path):
 		all_toks = []
 		for pickle_file in os.listdir("pickled_names"):

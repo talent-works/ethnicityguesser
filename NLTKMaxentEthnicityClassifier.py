@@ -32,7 +32,7 @@ class NLTKMaxentEthnicityClassifier(object):
 		for i in range(1,5):
 			if len(name) >= i:
 				self.add_prefix_suffix(name, i, features)
-		
+
 
 		for bigram in self.ngrams(name, 2):
 			features['has(%s)' % bigram] = True
@@ -75,7 +75,7 @@ class NLTKMaxentEthnicityClassifier(object):
 
 	def train(self):
 		tokens = self.make_train_toks(self.training_lists)
-		self.classifier = mxc.train(tokens,algorithm="iis")
+		self.classifier = mxc.train(tokens, algorithm="iis", min_lldelta=0.025)
 
 
 	def explain(self, name, columns=4):

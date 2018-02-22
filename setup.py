@@ -10,6 +10,6 @@ if __name__ == "__main__":
             PACKAGE_NAME: '.',
         },
         package_data = {
-            PACKAGE_NAME: ['./*'],
+            PACKAGE_NAME: ['pickled_classifiers/*', "pickled_names/*"],
         },
     )
